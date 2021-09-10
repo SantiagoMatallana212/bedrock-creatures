@@ -1,0 +1,7 @@
+﻿entity.bedrockcreatures:armadillo.name=Armadillo
+entity.bedrockcreatures:squirrel.name=Squirrel
+entity.bedrockcreatures:grizzly_bear.name=Grizzly Bear
+
+item.spawn_egg.entity.bedrockcreatures:armadillo.name=Spawn Armadillo
+item.spawn_egg.entity.bedrockcreatures:squirrel.name=Spawn Squirrel
+item.spawn_egg.entity.bedrockcreatures:grizzly_bear.name=Spawn Grizzly Bear

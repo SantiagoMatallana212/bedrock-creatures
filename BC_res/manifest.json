@@ -1,0 +1,18 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "New mobs to your world! Made by @kesamasi",
+        "name": "Bedrock Creatures",
+		"uuid": "3ac66bf2-a1d9-4ddd-b150-3cefded293ad",
+        "version": [1, 0, 0],
+        "min_engine_version": [1, 17, 0]
+    },
+    "modules": [
+        {
+            "description": "A lot of Mythical creatures! by @kesamasi",
+            "type": "resources",
+			"uuid": "ec2c2335-0a91-4afe-891e-32753c897aba",
+            "version": [1, 0, 0]
+        }
+    ]
+}

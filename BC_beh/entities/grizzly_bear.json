@@ -1,0 +1,332 @@
+{
+  "format_version": "1.17.10",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "bedrockcreatures:grizzly_bear",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "component_groups": {
+
+      "grizzly_baby": {
+        "minecraft:is_baby": {
+        },
+        "minecraft:scale": {
+          "value": 0.5
+        },
+        "minecraft:ageable": {
+          "duration": 1200,
+          "grow_up": {
+            "event": "minecraft:ageable_grow_up",
+            "target": "self"
+          }
+        },
+        "minecraft:behavior.follow_parent": {
+          "priority": 4,
+          "speed_multiplier": 1.25
+        }
+      },
+
+      "grizzly_baby_wild": {
+        "minecraft:on_target_acquired": {
+          "event": "on_scared",
+          "target": "self"
+        },
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 4,
+          "entity_types": [
+            {
+              "filters": { "test": "is_family", "subject": "other", "value": "player"},
+              "max_dist": 16
+            }
+          ]
+        }
+      },
+
+      "grizzly_baby_scared": {
+        "minecraft:angry": {
+          "duration": 1,
+          "broadcast_anger": true,
+          "broadcast_range": 41,
+          "calm_event": {
+            "event": "baby_on_calm",
+            "target": "self"
+          }
+        }
+      },
+
+      "grizzly_adult": {
+        "minecraft:experience_reward": {
+          "on_death": "query.last_hit_by_player ? Math.Random(1,3) : 0"
+        },
+        "minecraft:loot": {
+          "table": "loot_tables/entities/grizzly_bear.json"
+        }
+      },
+
+      "grizzly_adult_wild": {
+        "minecraft:on_target_acquired": {
+          "event": "on_anger",
+          "target": "self"
+        },
+        "minecraft:on_friendly_anger": {
+          "event": "on_anger",
+          "target": "self"
+        },
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 4,
+          "entity_types": [
+            {
+              "filters": {
+                "test": "is_family",
+                "subject": "other",
+                "value": "moose"
+              },
+              "max_dist": 16
+            }
+          ],
+          "must_see": false
+        }
+      },
+
+      "grizzly_adult_hostile": {
+        "minecraft:attack": {
+          "damage": 8.0
+        },
+        "minecraft:angry": {
+          "duration": 500,
+          "broadcast_anger": false,
+          "broadcast_range": 20,
+          "calm_event": {
+            "event": "on_calm",
+            "target": "self"
+          }
+        },
+        "minecraft:behavior.stomp_attack": {
+          "priority": 1,
+          "track_target": true,
+          "require_complete_path": true,
+          "stomp_range_multiplier": 2.0,
+          "no_damage_range_multiplier": 2.0
+        }
+      }
+    },
+
+    "components": {
+      "minecraft:is_hidden_when_invisible": {
+      },
+      "minecraft:type_family": {
+        "family": [ "grizzlybear", "bear", "mob" ]
+      },
+      "minecraft:breathable": {
+        "total_supply": 15,
+        "suffocate_time": 0
+      },
+      "minecraft:nameable": {
+      },
+      "minecraft:health": {
+        "value": 30
+      },
+      "minecraft:hurt_on_condition": {
+        "damage_conditions": [
+          {
+            "filters": { "test": "in_lava", "subject": "self", "operator": "==", "value": true },
+            "cause": "lava",
+            "damage_per_tick": 4
+          }
+        ]
+      },
+      "minecraft:collision_box": {
+        "width": 1.4,
+        "height": 1.1
+      },
+      "minecraft:movement": {
+        "value": 0.25
+      },
+      "minecraft:water_movement": {
+        "drag_factor": 0.98
+      },
+      "minecraft:navigation.walk": {
+        "can_path_over_water": true,
+        "avoid_damage_blocks": true
+      },
+      "minecraft:movement.basic": {
+
+      },
+      "minecraft:jump.static": {
+      },
+      "minecraft:can_climb": {
+      },
+      "minecraft:follow_range": {
+        "value": 48
+      },
+      "minecraft:despawn": {
+        "despawn_from_distance": {}
+      },
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 5
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 6,
+        "target_distance": 6.0,
+        "probability": 0.02
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 7
+      },
+      "minecraft:physics": {
+      },
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:behavior.panic": {
+        "priority": 2,
+        "speed_multiplier": 2.0
+      },
+      "minecraft:leashable": {
+        "soft_distance": 4.0,
+        "hard_distance": 6.0,
+        "max_distance": 10.0
+      },
+      "minecraft:conditional_bandwidth_optimization": {
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "on_damage": {
+              "filters": {
+                "test": "is_block",
+                "subject": "block",
+                "value": "minecraft:sweet_berry_bush"
+              }
+            },
+            "deals_damage": false
+          }
+        ]
+      },
+      "minecraft:behavior.raid_garden": {
+        "priority": 12,
+        "blocks": [
+          "minecraft:sweet_berry_bush",
+          "minecraft:cave_vines_head_with_berries",
+          "minecraft:cave_vines_body_with_berries"
+        ],
+        "speed_multiplier": 1.2,
+        "search_range": 12,
+        "search_height": 2,
+        "goal_radius": 0.8,
+        "max_to_eat": 0,
+        "initial_eat_delay": 2
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "randomize": [
+          {
+            "weight": 9,
+            "add": {
+              "component_groups": [
+                "grizzly_adult",
+                "grizzly_adult_wild"
+              ]
+            }
+          },
+          {
+            "weight": 1,
+            "add": {
+              "component_groups": [
+                "grizzly_baby",
+                "grizzly_baby_wild"
+              ]
+            }
+          }
+        ]
+      },
+
+      "minecraft:entity_born": {
+        "add": {
+          "component_groups": [
+            "grizzly_baby",
+            "grizzly_baby_wild"
+          ]
+        }
+      },
+
+      "minecraft:ageable_grow_up": {
+        "remove": {
+          "component_groups": [
+            "grizzly_baby",
+            "grizzly_baby_wild",
+            "grizzly_baby_scared"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "grizzly_adult",
+            "grizzly_adult_wild"
+          ]
+        }
+      },
+
+      "on_calm": {
+        "remove": {
+          "component_groups": [
+            "grizzly_adult_hostile"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "grizzly_adult_wild"
+          ]
+        }
+      },
+
+      "on_anger": {
+        "remove": {
+          "component_groups": [
+            "grizzly_adult_wild"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "grizzly_adult_hostile"
+          ]
+        }
+      },
+
+      "baby_on_calm": {
+        "remove": {
+          "component_groups": [
+            "grizzly_baby_scared"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "grizzly_baby_wild"
+          ]
+        }
+      },
+
+      "on_scared": {
+        "remove": {
+          "component_groups": [
+            "grizzly_baby_wild"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "grizzly_baby_scared"
+          ]
+        }
+      }
+    }
+  }
+}

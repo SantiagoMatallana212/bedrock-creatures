@@ -1,0 +1,42 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "bedrockcreatures:squirrel",
+      "materials": { "default": "squirrel" },
+      "textures": {
+        "default": "textures/entity/squirrel/squirrel"
+      },
+      "geometry": {
+        "default": "geometry.squirrel"
+      },
+
+      "animations": {
+        "setup": "animation.squirrel.setup",
+        "walk": "animation.squirrel.walk",
+        "run": "animation.squirrel.run",
+        "look_at_target": "animation.common.look_at_target",
+        "sitting": "animation.squirrel.sitting",
+        "cleaning_right": "animation.squirrel.cleaning_right",
+        "cleaning_left": "animation.squirrel.cleaning_left",
+        "cleaning_both": "animation.squirrel.cleaning_both"
+      },
+      "scripts": {
+        "pre_animation": [
+          "variable.cleaning_state = Math.round(Math.random(1, 3000));"
+        ]
+      },
+      "animation_controllers": [
+        { "move": "controller.animation.squirrel.move" },
+        { "sit": "controller.animation.squirrel.sit" },
+        { "cleaning": "controller.animation.squirrel.cleaning" }
+      ],
+      "render_controllers": [ "controller.render.squirrel" ],
+      "enable_attachables": true,
+      "spawn_egg": {
+        "base_color": "#28140d",
+        "overlay_color": "#07080b"
+      }
+    }
+  }
+}

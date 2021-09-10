@@ -1,0 +1,32 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "bedrockcreatures:armadillo",
+      "materials": { "default": "armadillo" },
+      "textures": {
+        "default": "textures/entity/armadillo/armadillo"
+      },
+      "geometry": {
+        "default": "geometry.armadillo"
+      },
+
+      "animations": {
+        "setup": "animation.armadillo.setup",
+        "walk": "animation.armadillo.walk",
+        "look_at_target": "animation.common.look_at_target",
+        "on_ball": "animation.armadillo.ball"
+      },
+      "animation_controllers": [
+        { "move": "controller.animation.armadillo.move" },
+        { "on_ball": "controller.animation.armadillo.on_ball" }
+      ],
+      "render_controllers": [ "controller.render.armadillo" ],
+      "enable_attachables": true,
+      "spawn_egg": {
+        "base_color": "#28140d",
+        "overlay_color": "#07080b"
+      }
+    }
+  }
+}

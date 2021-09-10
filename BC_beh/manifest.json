@@ -1,0 +1,24 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "New mobs to your world! Made by @kesamasi",
+        "name": "Bedrock Creatures",
+		"uuid": "208770dc-4cfe-43c1-947f-b8ac7a4abb12",
+        "version": [1, 0, 0],
+        "min_engine_version": [ 1, 17, 0 ]
+    },
+    "modules": [
+        {
+            "description": "New mobs to your world! Made by @kesamasi",
+            "type": "data",
+			"uuid": "1f2eaf4c-5d9c-4a5d-803e-bdbcf1915d71",
+            "version": [1, 0, 0]
+        }
+    ],
+    "dependencies": [
+        {
+			"uuid": "3ac66bf2-a1d9-4ddd-b150-3cefded293ad",
+            "version": [1, 0, 0]
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.armadillo.move" : {
+			"initial_state" : "idle",
+			"states" : {
+				"idle" : {
+					"animations" : [
+						"setup",
+						"look_at_target"
+					],
+					"transitions": [
+						{ "walk": "query.ground_speed > 0.0" }
+					],
+					"blend_transition": 0.25
+				},
+				"walk" : {
+					"animations" : [
+						"walk",
+						"look_at_target"
+					],
+					"transitions": [
+						{ "idle": "query.ground_speed <= 0.0" }
+					],
+					"blend_transition": 0.25
+				}
+			}
+		},
+		"controller.animation.armadillo.on_ball": {
+			"states": {
+				"default": {
+					"transitions": [
+						{ "on_ball": "query.is_stackable" }
+					],
+					"blend_transition": 0.25
+				},
+				"on_ball": {
+					"animations": [
+						"on_ball"
+					],
+					"transitions": [
+						{ "default": "!query.is_stackable" }
+					],
+					"blend_transition": 0.25
+				}
+			}
+		}
+	}
+}

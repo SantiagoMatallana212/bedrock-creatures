@@ -1,0 +1,102 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.squirrel.move" : {
+			"initial_state" : "idle",
+			"states" : {
+				"idle" : {
+					"animations" : [
+						"setup",
+						"look_at_target"
+					],
+					"transitions": [
+						{ "walk": "query.ground_speed <= 4.5" },
+						{ "run": "query.ground_speed >= 5.0" }
+					],
+					"blend_transition": 0.25
+				},
+				"walk" : {
+					"animations" : [
+						"walk",
+						"look_at_target"
+					],
+					"transitions": [
+						{ "idle": "query.ground_speed == 0.0" },
+						{ "run": "query.ground_speed >= 5.0" }
+					],
+					"blend_transition": 0.25
+				},
+				"run" : {
+					"animations" : [
+						"run",
+						"look_at_target"
+					],
+					"transitions": [
+						{ "idle": "query.ground_speed == 0.0" },
+						{ "walk": "query.ground_speed <= 4.5" }
+					],
+					"blend_transition": 0.25
+				}
+			}
+		},
+		"controller.animation.squirrel.sit": {
+			"states": {
+				"default": {
+					"transitions": [
+						{ "sitting": "query.is_sitting" }
+					],
+					"blend_transition": 0.25
+				},
+				"sitting": {
+					"animations": [
+						"sitting"
+					],
+					"transitions": [
+						{ "default": "!query.is_sitting" }
+					],
+					"blend_transition": 0.25
+				}
+			}
+		},
+		"controller.animation.squirrel.cleaning" : {
+			"initial_state" : "default",
+			"states" : {
+				"default" : {
+					"transitions": [
+						{ "cleaning_right": "variable.cleaning_state == 1 && query.ground_speed == 0.0 && !query.is_sitting" },
+						{ "cleaning_left": "variable.cleaning_state == 1000 && query.ground_speed == 0.0 && !query.is_sitting" },
+						{ "cleaning_both": "variable.cleaning_state == 3000 && query.ground_speed == 0.0 && !query.is_sitting" }
+					],
+					"blend_transition": 0.25
+				},
+				"cleaning_right" : {
+					"animations" : [
+						"cleaning_right"
+					],
+					"transitions": [
+						{ "default": "query.ground_speed > 0.0 || query.is_sitting" }
+					],
+					"blend_transition": 0.25
+				},
+				"cleaning_left" : {
+					"animations" : [
+						"cleaning_left"
+					],
+					"transitions": [
+						{ "default": "query.ground_speed > 0.0 || query.is_sitting" }
+					],
+					"blend_transition": 0.25
+				},
+				"cleaning_both" : {
+					"animations" : [
+						"cleaning_both"
+					],
+					"transitions": [
+						{ "default": "query.ground_speed > 0.0 || query.is_sitting" }
+					],
+					"blend_transition": 0.25
+				}
+			}
+		}
+	}
+}
